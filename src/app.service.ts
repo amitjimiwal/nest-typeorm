@@ -16,7 +16,9 @@ export class AppService {
     return 'Hello World! This Api is Working';
   }
   getAll(): Promise<User[]> {
-    return this.userRepository.find(); //Select * from User;
+    return this.userRepository.find({
+      relations: ['pets'],
+    }); //Select * from User;
   }
   async getUserbyId(id: number): Promise<User> {
     const user = await this.userRepository.findOneBy({ id }); //select * from user
